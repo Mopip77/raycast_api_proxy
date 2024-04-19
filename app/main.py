@@ -72,7 +72,9 @@ class OpenAIChatBot(ChatBotAbc):
             )
         else:
             logger.info("Using OpenAI API")
-            self.openai_client = openai.AsyncOpenAI()
+            self.openai_client = openai.AsyncOpenAI(
+                base_url=os.environ.get("OPENAI_API_URL")
+            )
 
     def __build_openai_messages(self, raycast_data: dict):
         openai_messages = []
